@@ -11,6 +11,8 @@ print (randomList)
 randomList = sorted(randomList)
 print (randomList)
 count = 0
+i = 0
+
 
 for i in range (1, listLenght):
     
