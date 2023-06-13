@@ -8,7 +8,7 @@
 # Ввод: пара-ра-рам рам-пам-папам па-ра-па-дам
 # Вывод: Парам пам-пам
 
-def rhythm(str):
+def rvinipuh(str):
     str = str.split()
     list_1 = []
     for word in str:
@@ -21,7 +21,7 @@ def rhythm(str):
 
 
 str_1 = 'пара-ра-рам рам-пам-папам па-ра-па-дам'
-if rhythm(str_1):
+if rvinipuh(str_1):
     print('Парам пам-пам')
 else:
     print('Пам парам')
