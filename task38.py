@@ -1,63 +1,63 @@
-# Задача 38: 
-# Дополнить телефонный справочник возможностью изменения и удаления данных. 
-# Пользователь также может ввести имя или фамилию, и Вы должны реализовать функционал для изменения и удаления данных
+# Задача 38: Дополнить телефонный справочник возможностью изменения и удаления данных. 
+# Пользователь также может ввести имя или фамилию, и 
+# Вы должны реализовать функционал для изменения и удаления данных
 
-# Показывает информацию в файле
-def show_data(filename):
-    print("\nПП | ФИО | Телефон")
+# информация в файле
+def selectAllReadPhoneNumber(filename):
+    print("\nПП | full name | Tel")
     with open(filename, "r", encoding="utf-8") as data:
         print(data.read())
     print("")
 
-# Записывает информацию в файл
-def export_data(filename):
+# Записывает новую инфу в файл
+def selectSomethingReadPhoneNumber(filename):
     with open(filename, "r", encoding="utf-8") as data:
-        tel_file = data.read()
-    num = len(tel_file.split("\n"))
+        phoneBook = data.read()
+    num = len(phoneBook.split("\n"))
     with open(filename, "a", encoding="utf-8") as data: 
-        fio = input("Введите ФИО: ")
-        phone_number = input("Введите номер телефона: ")
+        fio = input("Enter full name: ")
+        phone_number = input("Enter your phone number: ")
         data.write(f"{num} | {fio} | {phone_number}\n")
         print(f"Добавлена запись : {num} | {fio} | {phone_number}\n")
 
-# Изменяет информацию из файла
-def edit_data(filename):
-    print("\nПП | ФИО | Телефон")
+# Редактирует инфу из файла
+def addPerson(filename):
+    print("\nПП | full name | Tel")
     with open(filename, "r", encoding='utf-8') as data:
-        tel_book = data.read()
-    print(tel_book)
+        phoneBook = data.read()
+    print(phoneBook)
     print("")
-    index_delete_data = int(input("Введите номер строки для редактирования: ")) - 1
-    tel_book_lines = tel_book.split("\n")
-    edit_tel_book_lines = tel_book_lines[index_delete_data]
-    elements = edit_tel_book_lines.split(" | ")
-    fio = input("Введите ФИО: ")
-    phone = input("Введите номер телефона: ")
+    index_delete_data = int(input("Enter the line number to edit: ")) - 1
+    phoneBook_lines = phoneBook.split("\n")
+    edit_phoneBook_lines = phoneBook_lines[index_delete_data]
+    elements = edit_phoneBook_lines.split(" | ")
+    fio = input("Enter full: ")
+    phone = input("Enter your phone number: ")
     num = elements[0]
     if len(fio) == 0:
         fio = elements[1]
     if len(phone) == 0:
         phone = elements[2]
     edited_line = f"{num} | {fio} | {phone}"
-    tel_book_lines[index_delete_data] = edited_line
-    print(f"Запись - {edit_tel_book_lines}, изменена на - {edited_line}\n")
+    phoneBook_lines[index_delete_data] = edited_line
+    print(f"Record - {edit_phoneBook_lines}, changed to - {edited_line}\n")
     with open(filename, "w", encoding='utf-8') as f:
-        f.write("\n".join(tel_book_lines))
+        f.write("\n".join(phoneBook_lines))
 
-# Удаляет информацию из файла
+# Удаляет инфу из файла
 def delete_data(filename):
-    print("\nПП | ФИО | Телефон")
+    print("\nПП | full name | Tel")
     with open(filename, "r", encoding="utf-8") as data:
-        tel_book = data.read()
-        print(tel_book)
+        phoneBook = data.read()
+        print(phoneBook)
     print("")
-    index_delete_data = int(input("Введите номер строки для удаления: ")) - 1
-    tel_book_lines = tel_book.split("\n")
-    del_tel_book_lines = tel_book_lines[index_delete_data]
-    tel_book_lines.pop(index_delete_data)
-    print(f"Удалена запись: {del_tel_book_lines}\n")
+    index_delete_data = int(input("Enter the line number to delete: ")) - 1
+    phoneBook_lines = phoneBook.split("\n")
+    del_phoneBook_lines = phoneBook_lines[index_delete_data]
+    phoneBook_lines.pop(index_delete_data)
+    print(f"Record deleted: {del_phoneBook_lines}\n")
     with open(filename, "w", encoding='utf-8') as data:
-        data.write("\n".join(tel_book_lines))
+        data.write("\n".join(phoneBook_lines))
 
 def main():
     my_choice = -1
@@ -68,25 +68,25 @@ def main():
          file.write("")
 
     while my_choice != 0:
-        print("Выберите одно из действий:")
-        print("1 - Вывести инфо на экран")
-        print("2 - Произвести экпорт данных")
-        print("3 - Произвести изменение данных")
-        print("4 - Произвести удаление данных")
-        print("0 - Выход из программы")
-        action = int(input("Действие: "))
-        if action == 1:
-            show_data(file_tel)
-        elif action == 2:
-            export_data(file_tel)
-        elif action == 3:
-            edit_data(file_tel)
-        elif action == 4:
+        print("Choose one of the actions:")
+        print("1 - press for SHOW ALL")
+        print("2 - press for SELECT")
+        print("3 - press for ADD DATA")
+        print("4 - press for deleting Information ")
+        print("0 - press for EXITING THE PROGRAM")
+        enteredNum = int(input("Action: "))
+        if enteredNum == 1:
+            selectAllReadPhoneNumber(file_tel)
+        elif enteredNum == 2:
+            selectSomethingReadPhoneNumber(file_tel)
+        elif enteredNum == 3:
+            addPerson(file_tel)
+        elif enteredNum == 4:
             delete_data(file_tel)
         else:
             my_choice = 0
 
-    print("До свидания")
+    print("Goodbye! See you later!")
 
 if __name__ == "__main__":
     main()
